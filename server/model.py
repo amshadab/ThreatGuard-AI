@@ -2,6 +2,7 @@ from sqlalchemy import ForeignKey,String,DateTime,Text
 from sqlalchemy.orm import DeclarativeBase,Mapped,mapped_column
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
+import uuid
 
 class Base(DeclarativeBase):
     pass
@@ -33,6 +34,7 @@ class Profile(Base):
     )
 
 
+
 class URLScan(Base):
     __tablename__ = "url_scans"
 
@@ -52,8 +54,3 @@ class URLScan(Base):
         Text,
         nullable=False,
     )
-    created_at: Mapped[DateTime] = mapped_column(
-    DateTime(timezone=True),
-    server_default=func.now(),
-    nullable=False,
-)
