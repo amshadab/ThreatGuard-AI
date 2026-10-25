@@ -1,7 +1,23 @@
-from pydantic_settings import BaseSettings,SettingsConfigDict
+
+from pathlib import Path
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
 
 class Settings(BaseSettings):
-    model_config=SettingsConfigDict(env_file=".env",extra="ignore")
-    DATABASE_URL: str
+    model_config = SettingsConfigDict(
+        env_file=PROJECT_ROOT / ".env",
+        extra="ignore",
+    )
 
-settings=Settings()
+    DATABASE_URL: str
+    
+    SUPABASE_URL: str
+    SUPABASE_PUBLISHABLE_KEY: str
+
+
+
+settings = Settings()
